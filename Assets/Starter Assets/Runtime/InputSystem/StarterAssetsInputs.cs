@@ -7,7 +7,6 @@ namespace StarterAssets
 {
 	public class StarterAssetsInputs : MonoBehaviour
 	{
-        #region Bawaan
         [Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
@@ -78,12 +77,6 @@ namespace StarterAssets
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
-        #endregion
-
-		void OnCameraMove(InputValue value)
-		{
-			Debug.Log("OnCameraMove: " + value.Get<float>());
-        }
     }
 
 }

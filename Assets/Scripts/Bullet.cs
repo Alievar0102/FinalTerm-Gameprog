@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
     Rigidbody rb;
 
     [SerializeField] float speed = 20f; // Speed of the bullet
+    public int damage = 1; // Speed of the bullet
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

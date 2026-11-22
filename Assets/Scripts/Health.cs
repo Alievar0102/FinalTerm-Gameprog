@@ -11,11 +11,13 @@ public class Health : MonoBehaviour
     public bool isPlayer = false;
     public Image healthBar;
 
+    //Logic logic;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         maxHealth = health;
+        //logic = FindFirstObjectByType<Logic>();
     }
 
     // Update is called once per frame
@@ -42,10 +44,13 @@ public class Health : MonoBehaviour
         {
             if (isPlayer) 
             {
-                //GameState.Instance.GameLose();
+                GameState.Instance.currentState = GameState.State.GameOver;
+                Time.timeScale = 0f;
+                Debug.Log("Game Over");
             }
             else
             {
+                GameState.Instance.UpdateKillCount();
                 Destroy(gameObject);
             }
         }
@@ -67,7 +72,7 @@ public class Health : MonoBehaviour
     {
         if (isPlayer && hit.gameObject.CompareTag("Enemy"))
         {
-            Damage(1, 2f);
+            Damage(1, 0.5f);
         }
     }
 }

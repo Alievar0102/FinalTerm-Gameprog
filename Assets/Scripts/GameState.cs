@@ -1,13 +1,14 @@
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using DG.Tweening;
+using UnityEngine.UIElements;
 
 public class GameState : Singleton<GameState>
 {
     public enum State
     {
-        Playing, Paused, Rushed, GameOver
+        Playing, Paused, Rushed, GameOver, Win
     }
     public State currentState;
 
@@ -17,7 +18,7 @@ public class GameState : Singleton<GameState>
     public bool IsGameOver => currentState == State.GameOver;
 
 
-    private float score;
+    /*private float score;
 
     public TMP_Text scoreText;
     public float Score
@@ -35,7 +36,32 @@ public class GameState : Singleton<GameState>
                 targetBar.DOFillAmount(score / target, 0.5f);
             }
         }
+    }*/
+
+    #region KillCount
+    int killCount;
+
+    public int KillCount
+    {
+        get
+        {
+            return killCount;
+        }
+        set
+        {
+            killCount = value;
+        }
     }
+    
+    public TMP_Text killCountText;
+
+    public void UpdateKillCount()
+    {
+        KillCount++;
+        killCountText.text = GameState.Instance.KillCount.ToString();
+    }
+    #endregion
+
 
 
     public TMP_Text timeText;
@@ -46,24 +72,24 @@ public class GameState : Singleton<GameState>
             timeLeft = value;
             if(timeText != null)
             {
-                timeText.text = $"Time Left: {timeLeft:F2} s";
+                timeText.text = $"Time: {timeLeft:F2}";
             }
         }
     }
 
     public float playTime = 60f;
     private float timeLeft;
-    public float rushTime = 0.5f;
+    //public float rushTime = 0.5f;
 
-    public float target;
-    public Image targetBar;
+    //public float target;
+    //public Image targetBar;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         TimeLeft = playTime;
         currentState = State.Playing;
-        score = 0f;
+        //score = 0f;
     }
 
     // Update is called once per frame
@@ -73,16 +99,15 @@ public class GameState : Singleton<GameState>
 
         TimeLeft -= Time.deltaTime;
         
-        if(TimeLeft / playTime < rushTime)
+        /*if(TimeLeft / playTime < rushTime)
         {
             currentState = State.Rushed;
-        }
+        }*/
 
         if(TimeLeft < 0f)
         {
-            currentState = State.GameOver;
+            currentState = State.Win;
             Time.timeScale = 0f;
-            print("Game Over!");
         }
     }
 

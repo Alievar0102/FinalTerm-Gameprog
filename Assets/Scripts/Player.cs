@@ -21,6 +21,10 @@ public class Player : MonoBehaviour
 
     public Texture2D[] cursors;
 
+    public GameObject pausePanel;
+    public GameObject winPanel;
+    public GameObject gameOverPanel;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,6 +44,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         aimMouse();
+
+        pausePanel.SetActive(value: GameState.Instance.currentState == GameState.State.Paused);
+        winPanel.SetActive(value: GameState.Instance.currentState == GameState.State.Win);
+        gameOverPanel.SetActive(value: GameState.Instance.currentState == GameState.State.GameOver);
     }
 
     private void FixedUpdate()

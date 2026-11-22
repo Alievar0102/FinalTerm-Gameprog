@@ -405,6 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   health: 5
+  timer: 0
   isPlayer: 0
   healthBar: {fileID: 0}
 --- !u!1 &330585543
@@ -2407,6 +2408,7 @@ MonoBehaviour:
   lookFromTouch: 0
   cursorLocked: 1
   cursorInputForLook: 1
+  isAimSA: 0
 --- !u!4 &3561202353281740911
 Transform:
   m_ObjectHideFlags: 0
@@ -3448,13 +3450,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995ad5d6300456f43aeae0640eab4feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  layers:
-    serializedVersion: 2
-    m_Bits: 72
   bulletPrefab: {fileID: 3901549980054547601, guid: 4b7e94291a87eae4bbabda2b421b57b2, type: 3}
   gun: {fileID: 170431068}
   bulletRandomRotation: 0
   fireRate: 0.5
+  cursors:
+  - {fileID: 2800000, guid: 7f2ec7fe0273e93469f2560424ebab43, type: 3}
+  - {fileID: 2800000, guid: d3b5fa67b7ca6d04cb7fceb2be3c4c27, type: 3}
+  - {fileID: 2800000, guid: 4859fb917019fc54f819e0c9c25d967e, type: 3}
+  - {fileID: 2800000, guid: e90537f2221714144a4801f79e6c5812, type: 3}
+  cursorAnimRate: 0.4
 --- !u!114 &7018120648232651042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3468,6 +3473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   health: 10
+  timer: 0
   isPlayer: 1
   healthBar: {fileID: 1251468746}
 --- !u!4 &7082370649071878802

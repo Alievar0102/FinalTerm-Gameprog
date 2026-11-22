@@ -1,6 +1,7 @@
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+using UnityEngine.Pool;
 #endif
 
 namespace StarterAssets
@@ -41,14 +42,21 @@ namespace StarterAssets
 			//JumpInput(value.isPressed);
 		}
 
+		public bool isAimSA = false;
+		bool lastSprintInput = false;
+
 		public void OnSprint(InputValue value)
 		{
-			SprintInput(value.isPressed);
+			lastSprintInput = value.isPressed;
 		}
+        private void Update()
+        {
+			SprintInput(isAimSA ? false : lastSprintInput);
+        }
 #endif
 
 
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		} 
